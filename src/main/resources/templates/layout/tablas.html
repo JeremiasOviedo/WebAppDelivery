@@ -1,0 +1,377 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+                        <style type="text/css">
+                            body {
+                                background: rgb(12,12,12) !important;
+                            }
+                        </style>
+                        </head>
+                        <body>
+
+                            <section th:fragment="tablas">
+                                <div class="border border-primary table-responsive container-fluid position-relative bg-dark" style="height:600px">
+                                    <div class="container-fluid sticky-top bg-dark p-2">
+                                        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-planilla-diaria" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Planilla Diaria</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-planilla-mensual" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Planilla Mensual</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-planilla-anual" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Planilla Anual</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-planilla-diaria" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+
+                                            <div class="container-fluid table-responsive  " style="height:400px">
+
+                                                <div th:if="${viajes != null and !viajes.empty}">
+                                                    <table class="table table-primary">
+                                                        <thead class="table-secondary">
+                                                            <tr>
+                                                                <th class="sticky-top">#</th>
+                                                                <th class="sticky-top" scope="col" >Monto del Pedido</th>
+                                                                <th class="sticky-top"scope="col" >Valor del viaje</th>
+                                                                <th class="sticky-top" scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="viaje, contador : ${viajes}">
+                                                                <th scope="row">[[${contador.count}]]</th>
+                                                                <td>[[${viaje.montoDelPedido}]]</td>
+                                                                <td class="table-success">[[${viaje.valorDelViaje}]]</td>
+                                                                <td>
+                                                                    <a th:href="@{/eliminarViaje(idViaje=${viaje.idViaje})}"
+                                                                       class="btn btn-sm">
+                                                                        <i class="bi bi-x-circle text-danger"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div th:if="${viajes == null or viajes.empty}">
+                                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                                        <div class="text-center">
+                                                            <h1 class="display-3 text-white">Parece que no tienes viajes.</h1>
+                                                            <h1 class="display-6 text-secondary">Prueba añadiendo uno</h1>
+                                                            <button type="button" class="btn btn-primary btn-lg m-5" data-bs-toggle="modal" data-bs-target="#agregarViaje">
+                                                                Nuevo Viaje
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="container-fluid position-absolute bottom-0 end-0 p-2">  
+
+                                                <div class="container text-center">
+                                                    <div th:if="${viajes != null and !viajes.empty}">
+                                                       
+                                                        <button type="button" class="btn btn-outline-primary mb-1" data-bs-toggle="modal" data-bs-target="#agregarViaje">
+                                                            Nuevo Viaje
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-primary mb-1 " data-bs-toggle="modal" data-bs-target="#cerrarDia">
+                                                            Terminar Dia
+                                                        </button>
+
+                                                        <button type="button" class="btn btn-outline-danger mb-1" data-bs-toggle="modal" data-bs-target="#limpiarPlanillaDiaria">
+                                                            Limpiar Planilla
+                                                        </button>
+                                                       
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-planilla-mensual" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
+                                            <div class="container-fluid table-responsive  " style="height:400px">
+
+                                                <div th:if="${dias != null and !dias.empty}">
+                                                    <table class="table table-primary">
+                                                        <thead class="table-secondary">
+                                                            <tr>
+                                                                <th class="sticky-top">Dia</th>
+                                                                <th class="sticky-top" scope="col" >Viajes</th>
+                                                                <th class="sticky-top"scope="col" >Ganancias</th>
+                                                                <th class="sticky-top"scope="col" >Monto</th>
+                                                                <th class="sticky-top" scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="dia, contador : ${dias}">
+                                                                <th scope="row">[[${contador.count}]]</th>
+                                                                <td>[[${dia.cantidadDeViajes}]]</td>
+                                                                <td class="table-success">[[${dia.gananciasDelDia}]]</td>
+                                                                <td class="table-danger">[[${dia.montoAPagar}]]</td>
+                                                                <td>
+                                                                    <a th:href="@{/eliminarDia(idDia=${dia.idDia})}"
+                                                                       class="btn btn-sm">
+                                                                        <i class="bi bi-x-circle text-danger"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div th:if="${dias == null or dias.empty}">
+                                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                                        <div class="text-center">
+                                                            <h1 class="display-3 text-white">La lista esta vacía.</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="container-fluid bg-dark position-absolute bottom-0 end-0 p-2">  
+
+                                                <div class="container text-center">
+
+                                                    <div th:if="${dias!= null and !dias.empty}">
+                                                        <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#cerrarMes">
+                                                            Terminar Mes
+                                                        </button>
+
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#limpiarPlanillaMensual">
+                                                            Limpiar Planilla
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-planilla-anual" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+
+                                            <div class="container-fluid table-responsive  " style="height:400px">
+
+                                                <div th:if="${meses != null and !meses.empty}">
+                                                    <table class="table table-primary">
+                                                        <thead class="table-secondary">
+                                                            <tr>
+                                                                <th class="sticky-top">Mes</th>
+                                                                <th class="sticky-top" scope="col" >Dias trabajados</th>
+                                                                <th class="sticky-top"scope="col" >Ganancias</th>
+                                                                <th class="sticky-top" scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="mes, contador : ${meses}">
+                                                                <th scope="row">[[${contador.count}]]</th>
+                                                                <td>[[${mes.cantidadDeDias}]]</td>
+                                                                <td class="table-success">[[${mes.gananciasDelMes}]]</td>
+                                                                <td>
+                                                                    <a th:href="@{/eliminarMes(idMes=${mes.idMes})}"
+                                                                       class="btn btn-sm">
+                                                                        <i class="bi bi-x-circle text-danger"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div th:if="${meses == null or meses.empty}">
+                                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                                        <div class="text-center">
+                                                            <h1 class="display-3 text-white">La lista esta vacía.</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid bg-dark position-absolute bottom-0 end-0 p-2">  
+
+                                                <div class="container text-center">
+
+
+                                                    <div th:if="${meses !=null and !meses.empty}">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#limpiarPlanillaAnual">
+                                                            Limpiar Planilla
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!----------------------- Modals Planilla Diaria ----------------->
+
+                                <div>  
+                                    <div class="modal fade" id="agregarViaje" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Agregar Viaje</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form th:action="@{/agregarViaje}" th:object="${viaje}"
+                                                      method="POST" class="was-validated">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="monto_del_pedido">Monto del Pedido</label>
+                                                            <input type="number" class="form-control" name="montoDelPedido" required="true">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="valor_del_viaje">Valor del Viaje</label>
+                                                            <input type="number" class="form-control" name="valorDelViaje" required="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Agregar Viaje</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="modal fade" id="limpiarPlanillaDiaria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Limpiar planilla diaria.</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estas seguro que deseas borrar todos los elementos de la planilla diaria?
+                                                </div>
+                                                <form th:action="@{/eliminarTodoViajes}"
+                                                      method="POST">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="modal fade" id="cerrarDia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Terminar Dia</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estas seguro que deas terminar tu dia?
+                                                    Esto borrará todos los elementos de la planilla diaria.
+                                                </div>
+                                                <form th:action="@{/agregarDia}" th:object="${dia}"
+                                                      method="POST">
+                                                    <div class="modal-footer">
+                                                        <input type="hidden" name="montoAPagar" th:value="${montoAPagar}"/>
+                                                        <input type="hidden" name="cantidadDeViajes" th:value="${cantidadDeViajes}"/>
+                                                        <input type="hidden" name="gananciasDelDia" th:value="${gananciasDelDia}"/>
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------- Modals Planilla Mensual ----------------------->
+                                <div>
+                                    <div class="modal fade" id="limpiarPlanillaMensual" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Limpiar planilla mensual.</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estas seguro que deseas borrar todos los elementos de la planilla mensual?
+                                                </div>
+                                                <form th:action="@{/eliminarTodoDias}"
+                                                      method="POST">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="modal fade" id="cerrarMes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Terminar Dia</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estas seguro que deas terminar tu dia?
+                                                    Esto borrará todos los elementos de la planilla diaria.
+                                                </div>
+                                                <form th:action="@{/cerrarMes}" th:object="${mes}"
+                                                      method="POST">
+                                                    <div class="modal-footer">
+                                                        <input type="hidden" name="cantidadDeDias" th:value="${cantidadDeDias}"/>
+                                                        <input type="hidden" name="gananciasDelMes" th:value="${gananciasDelMes}"/>
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------- Modals planilla anual------------------->
+
+                                <div>
+                                    <div class="modal fade" id="limpiarPlanillaAnual" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header ">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Limpiar planilla anual.</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    ¿Estas seguro que deseas borrar todos los elementos de la planilla anual?
+                                                </div>
+                                                <form th:action="@{/eliminarTodoMeses}"
+                                                      method="POST">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </body>
+                        </html>
