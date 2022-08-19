@@ -23,7 +23,4 @@ El problema reside en que al haber varios deliverys puede ser que se le sume una
 Se diseñara una app para que el pueda llevar un control de los pedidos que entrega.
 Esta app sumara automaticamente el monto final que debe pagar y las ganancias que le quedan de ese dia.
 
-MODO DE USO:
-Al ser el primer programa que hice no cuenta con Front end, cree un menu interactivo que se muestra en la consola.
-Para navegar en el menu solo hay que ingresar el numero que corresponde a cada opcion (como las contestadoras automaticas de telefono).
-El valor de los viajes esa inicializado en 0, por lo tanto cuando se inicie el programa recomiendo entrar a la seccion configuraciones y asignarles un valor.
+
