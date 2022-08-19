@@ -5,9 +5,8 @@ Esta es la idea de mi primer programa (si no viste mi primer programa te recomie
 </br>
 Realizado en Spring Boot utilizando una base de datos MySQL
 </br>
-prueba esta app
-</br>
-<a href="https://mideliveryapp.herokuapp.com" target="_blank"> AQUI </a>
+
+Prueba esta App<a href="https://mideliveryapp.herokuapp.com" target="_blank"> AQUI </a>
 
 
 ADJUNTO README:
