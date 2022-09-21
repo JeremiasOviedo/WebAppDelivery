@@ -27,8 +27,8 @@ Esta app sumara automaticamente el monto final que debe pagar y las ganancias qu
 //TODO
 
 <ul>
-  <li>.Normalizar base datos</li>
-<li>.Hacer la plataforma multiusuario</li>
-<li>.Mejoras en el Front End</li>
+  <li>Normalizar base datos</li>
+<li>Hacer la plataforma multiusuario</li>
+<li>Mejoras en el Front End</li>
 </ul>
 
