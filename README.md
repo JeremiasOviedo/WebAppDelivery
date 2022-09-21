@@ -24,3 +24,10 @@ Se diseñara una app para que el pueda llevar un control de los pedidos que entr
 Esta app sumara automaticamente el monto final que debe pagar y las ganancias que le quedan de ese dia.
 
 
+//TODO
+
+.Normalizar base datos
+.Hacer la plataforma multiusuario
+.Mejoras en el Front End
+
+
