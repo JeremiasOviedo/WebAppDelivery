@@ -18,10 +18,14 @@ Ejemplo: si jeremias entrega una pizza de $900 el la cobra $1000.
 Al final de la noche jeremias tiene que abonar el monto de todos los pedidos que entrego esa noche, quedandose con el dinero que cobro de mas x su trabajo.
 Ejemplo: si en toda la noche jeremias entrego 3 pizzas de $900 debera pagarle al local $2700 quedandose asi con $300 (recordemos los $100 que cobro de mas x cada pizza)
 
-El problema reside en que al haber varios deliverys puede ser que se le sume una pizza que el no entregó debiendo asi pagar de mas.
+La pizzeria tiene una planilla en la que anota los pedidos y cuando es enviado colocan el nombre del delivery que llevo el pedido. Al finalizar la noche se hace un recuento y una suma de todos los pedidos
+
+El problema reside en que al haber varios mensajers hay margen de equivocacion, el planillero puede equivocarse y anotar el nombre del delivery equivocado, sumandole un precio que no le corresponde, haciendo que el mensajero tenga que pagar un pedido el cual nunca entrego.
 
 Se diseñara una app para que el pueda llevar un control de los pedidos que entrega.
 Esta app sumara automaticamente el monto final que debe pagar y las ganancias que le quedan de ese dia.
+Si el monto final de la app coincide con el monto final de la planilla del local, no hubo errores.
+Si hay diferencia entre los dos montos finales eso indica un error, lo que hara que se revise y repase la planilla entre el mensajero y el planillero para ubicarlo y asi corregirlo.
 
 
 //TODO
