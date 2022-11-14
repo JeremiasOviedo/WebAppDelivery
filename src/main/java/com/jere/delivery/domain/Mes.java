@@ -14,9 +14,12 @@ public class Mes implements Serializable{
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column()
     private Long idMes;
     
+    @Column()
     private int cantidadDeDias;
    
+    @Column()
     private double gananciasDelMes;
 }

@@ -38,7 +38,7 @@ public class DiaServiceImpl implements DiaService {
 
     @Override
     public void limpiarPlanilla() {
-        diadao.deleteAll();;
+        diadao.deleteAll();
     }
 
 }
