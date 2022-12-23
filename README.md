@@ -60,6 +60,7 @@ Si hay diferencia entre los dos montos finales eso indica un error, lo que hara 
 
 <ul>
 <li>JAVA 17</li>
+ <li>Spring Boot 2.7.4</li>
 <li>Base de datos MySQL con JPA</li>
 <li>Bootstrap 4</li>
 <li>Arquitectura MVC</li>
