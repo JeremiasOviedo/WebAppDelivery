@@ -36,3 +36,7 @@ Si hay diferencia entre los dos montos finales eso indica un error, lo que hara 
 <li>Mejoras en el Front End</li>
 </ul>
 
+# Inicio
+
+<a href="https://postimg.cc/zVwq1mrQ" target="_blank"><img src="https://i.postimg.cc/zVwq1mrQ/Inicio.png" alt="Inicio"/></a><br/><br/>
+
