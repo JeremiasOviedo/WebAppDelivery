@@ -38,5 +38,29 @@ Si hay diferencia entre los dos montos finales eso indica un error, lo que hara 
 
 # Inicio
 
-<a href="https://postimg.cc/zVwq1mrQ" target="_blank"><img src="https://i.postimg.cc/zVwq1mrQ/Inicio.png" alt="Inicio"/></a><br/><br/>
+<a href="https://postimg.cc/zVwq1mrQ" target="_blank"><img src="https://i.postimg.cc/SN3RCqtm/Inicio.png" alt="Inicio"/></a><br/><br/>
+
+# Añadiendo un viaje
+
+<a href="https://postimg.cc/qzHpYJ9n" target="_blank"><img src="https://i.postimg.cc/hPfhXhsC/a-adiendo-un-viaje.png" alt="a-adiendo-un-viaje"/></a><br/><br/>
+
+# Planilla diaria
+
+<a href="https://postimg.cc/rD8MVhyw" target="_blank"><img src="https://i.postimg.cc/pLjTB7gz/planilla-diaria.png" alt="planilla-diaria"/></a><br/><br/>
+
+
+# Planilla Mensual (ganancias diarias y monto a pagar a la pizzeria)
+
+<a href="https://postimg.cc/yJxK9kZq" target="_blank"><img src="https://i.postimg.cc/zfSGshDf/planilla-mensual.png" alt="planilla-mensual"/></a><br/><br/>
+
+# Planilla Anual (dias trabajados y ganancias mensuales)
+
+<a href="https://postimg.cc/5Xn16wjq" target="_blank"><img src="https://i.postimg.cc/DzKzp6TD/planilla-anual.png" alt="planilla-anual"/></a><br/><br/>
+
+
+
+
+
+
+
 
