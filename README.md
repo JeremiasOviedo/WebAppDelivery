@@ -3,7 +3,6 @@ Versión Web App mejorada
 
 Esta es la idea de mi primer programa (si no viste mi primer programa te recomiendo verlo)
 </br>
-Realizado en Spring Boot utilizando una base de datos MySQL
 </br>
 
 Prueba esta App<a href="https://webappdelivery-production.up.railway.app/" target="_blank"> AQUI </a>
@@ -57,6 +56,14 @@ Si hay diferencia entre los dos montos finales eso indica un error, lo que hara 
 
 <a href="https://postimg.cc/5Xn16wjq" target="_blank"><img src="https://i.postimg.cc/DzKzp6TD/planilla-anual.png" alt="planilla-anual"/></a><br/><br/>
 
+# Tecnologias Utilizadas:
+
+<ul>
+<li>JAVA 17</li>
+<li>Base de datos MySQL con JPA</li>
+<li>Bootstrap 4</li>
+<li>Arquitectura MVC</li>
+</ul>
 
 
 
